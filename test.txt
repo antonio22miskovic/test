@@ -1,0 +1,24 @@
+Exam 1: Create a System
+System Name: Contacts List System
+Choose any Language/Framework: Laravel, Codeigniter or Core PHP (using OOP is an advantage)
+Scope: 
+    1. Register, Forgot password and Update User
+    2. Can Login.
+    3. Create, Update, Delete, Search, View contacts
+    4. List of all contacts (This will be the homepage)
+    5. Fields added in the form must be, First Name, Last Name, Email and Contact Number
+    6. After adding a contact to the list, an email notification will be sent to the email of the contact user that says, “We added you in our contact list. Thank you.”
+    7. Add pagination if more than 10 contacts
+    8. Must be responsive (You can use Bootstrap)
+    9. File/Codes should be pushed to the repository (Bitbucket/Github) and make it public.
+If finished please post it to skype group
+
+Notes: When done, please share us the Repository Link.
+
+
+
+
+Exam 2: Responsive Exam
+Scope:
+    1. Read the instructions given inside the folder name “Responsive Exam”
+Thank you and Goodluck.
