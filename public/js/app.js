@@ -97881,7 +97881,7 @@ var authModule = {
               case 7:
                 _context2.prev = 7;
                 _context2.t0 = _context2["catch"](0);
-                throw new Error('email invalido');
+                throw new Error('Email Invalid');
 
               case 10:
               case "end":
@@ -97901,7 +97901,7 @@ var authModule = {
               case 0:
                 _context3.prev = 0;
                 _context3.next = 3;
-                return axios.post('/api/reset/codigo-vereificacion', datos);
+                return axios.post('/api/reset/code-verification', datos);
 
               case 3:
                 res = _context3.sent;
@@ -97929,7 +97929,7 @@ var authModule = {
               case 0:
                 _context4.prev = 0;
                 _context4.next = 3;
-                return axios.post('/api/reset/update-codigo', datos);
+                return axios.post('/api/reset/update-code', datos);
 
               case 3:
                 res = _context4.sent;
@@ -97938,7 +97938,7 @@ var authModule = {
               case 7:
                 _context4.prev = 7;
                 _context4.t0 = _context4["catch"](0);
-                throw new Error('no se puede actualizar codigo');
+                throw new Error('cant update code');
 
               case 10:
               case "end":
@@ -97967,7 +97967,7 @@ var authModule = {
               case 7:
                 _context5.prev = 7;
                 _context5.t0 = _context5["catch"](0);
-                throw new Error('ah habido un problema al actualizar su contraseña');
+                throw new Error('there has been a problem updating your password');
 
               case 10:
               case "end":
@@ -97987,7 +97987,7 @@ var authModule = {
               case 0:
                 _context6.prev = 0;
                 _context6.next = 3;
-                return axios.post('/api/reset/update-codigo', datos);
+                return axios.post('/api/reset/update-code', datos);
 
               case 3:
                 res = _context6.sent;
@@ -97996,7 +97996,7 @@ var authModule = {
               case 7:
                 _context6.prev = 7;
                 _context6.t0 = _context6["catch"](0);
-                throw new Error('no se pudo actualizar el codigo');
+                throw new Error('could not update the code');
 
               case 10:
               case "end":

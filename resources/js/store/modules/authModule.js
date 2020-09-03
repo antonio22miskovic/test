@@ -133,14 +133,14 @@ export const authModule = {
 				let res = await axios.post('/api/reset/email-vereificacion',{email:email})
 				return res.data
 			} catch(e) {
-				throw new Error('email invalido')
+				throw new Error('Email Invalid')
 			}
 		},
 
 			// verificacion codigo
 		async CODIGO_RESET_PASSWORD(context,datos){
 			try {
-				let res = await axios.post('/api/reset/codigo-vereificacion',datos)
+				let res = await axios.post('/api/reset/code-verification',datos)
 				return res.data
 			} catch(e) {
 				throw new Error('codigo invalido')
@@ -149,10 +149,10 @@ export const authModule = {
 
 		async UPDATE_CODIGO_RESET_PASSWORD(context,datos){
 			try {
-				let res = await axios.post('/api/reset/update-codigo',datos)
+				let res = await axios.post('/api/reset/update-code',datos)
 				return res.data
 			} catch(e) {
-				throw new Error('no se puede actualizar codigo')
+				throw new Error('cant update code')
 			}
 		},
 
@@ -162,17 +162,17 @@ export const authModule = {
 				let res = await axios.post('/api/reset/update-password',datos)
 				return res.data
 			} catch(e) {
-				throw new Error('ah habido un problema al actualizar su contraseña')
+				throw new Error('there has been a problem updating your password')
 			}
 		},
 
 		// actualizar codigo
 		async CODIGO_UPDATE_RESET_PASSWORD(context,datos){
 			try {
-				let res = await axios.post('/api/reset/update-codigo',datos)
+				let res = await axios.post('/api/reset/update-code',datos)
 				return res.data
 			} catch(e) {
-				throw new Error('no se pudo actualizar el codigo')
+				throw new Error('could not update the code')
 			}
 		},
 

@@ -24,9 +24,9 @@ Route::group(['prefix' => 'auth'], function ($router) {
 Route::group(['prefix' => 'reset'], function ($router) {
 
 	Route::post('email-vereification','Auth\ResetPasswordController@emailValidate');
-	Route::post('codigo-vereification','Auth\ResetPasswordController@ConfirmeCodigo');
+	Route::post('code-verification','Auth\ResetPasswordController@ConfirmeCodigo');
 	Route::post('update-password','Auth\ResetPasswordController@UpdatePassword');
-	Route::post('update-codigo','Auth\ResetPasswordController@refreshCodigo');
+	Route::post('update-code','Auth\ResetPasswordController@refreshCodigo');
 
 });
 
