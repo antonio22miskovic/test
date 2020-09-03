@@ -31,10 +31,10 @@
         </v-form>
     </v-card-text>
     <div class="text-center">
-      <v-btn text color="secondary"  :to="{name:'emailVerifique'}"> Forgot your Password? </v-btn>
+      <v-btn text color="secondary"  :to="{name:'email-recovery'}"> Forgot your Password? </v-btn>
     </div>
     <div class="text-center">
-      <v-btn text color="secondary" :to="{name:'registro'}"> Register </v-btn>
+      <v-btn text color="secondary" :to="{name:'register'}"> Register </v-btn>
     </div>
 	</div>
 </template>

@@ -7,7 +7,7 @@
          <template>
              <v-app-bar-nav-icon @click="Drawer_On"></v-app-bar-nav-icon>
               <v-toolbar-title>
-                  <router-link to="/home" tag="span" style="cursor:pointer">vuetify</router-link>
+                  <router-link to="/home" tag="span" style="cursor:pointer">TEST</router-link>
               </v-toolbar-title>
 
                 <v-spacer></v-spacer>
@@ -18,7 +18,7 @@
                         <router-link to=""tag="span">{{ currentUser.name }}</router-link>
                       </v-btn>
 
-                      <v-btn color="primary" text small>
+                      <v-btn color="dark" text small>
                         <span @click="cerrar_session"> logout </span>
                       </v-btn>
 

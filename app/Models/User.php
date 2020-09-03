@@ -18,11 +18,11 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $fillable = [
 
-        'First_Name',
-        'Last_Name',
-        'Contact_Number',
-        'Email',
-        'Password',
+        'first_name',
+        'last_name',
+        'contact_number',
+        'email',
+        'password',
 
     ];
 
@@ -52,4 +52,38 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
     // fin funciones para jwt
+
+      // Scope
+    public function scopeFirst_name($query, $first_name)
+    {
+        if($first_name){
+            return $query->where('first_name', 'LIKE', "%$first_name%");
+        }
+    }
+
+     // Scope
+    public function scopeLast_name($query, $last_name)
+    {
+        if($last_name){
+            return $query->where('Last_name', 'LIKE', "%$last_name%");
+        }
+    }
+
+    // Scope
+    public function scopeContact_number($query, $contact_number)
+    {
+        if($contact_number){
+            return $query->where('contact_number', 'LIKE', "%$contact_number%");
+        }
+    }
+
+    // Scope
+    public function scopeEmail($query, $email)
+    {
+        if($email){
+            return $query->where('email', 'LIKE', "%$email%");
+        }
+    }
+
+
 }

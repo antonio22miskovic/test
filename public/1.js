@@ -76,6 +76,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -114,23 +115,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-// import { mapState , mapGetters , mapActions , mapMutations } from 'vuex'
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Drawer',
   data: function data() {
@@ -144,6 +129,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
+    user: function user() {
+      return this.$store.state.AUTH.currentUser;
+    },
     drawerOn: {
       get: function get() {
         return this.$store.state.ADMIN_HOME.drawer;
@@ -171,7 +159,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_layouts_navbar_Navbar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/layouts/navbar/Navbar */ "./resources/js/components/layouts/navbar/Navbar.vue");
 /* harmony import */ var _components_layouts_sidebar_Drawer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/layouts/sidebar/Drawer */ "./resources/js/components/layouts/sidebar/Drawer.vue");
-//
 //
 //
 //
@@ -229,7 +216,7 @@ var render = function() {
                 staticStyle: { cursor: "pointer" },
                 attrs: { to: "/home", tag: "span" }
               },
-              [_vm._v("vuetify")]
+              [_vm._v("TEST")]
             )
           ],
           1
@@ -251,7 +238,7 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _c("v-btn", { attrs: { color: "primary", text: "", small: "" } }, [
+            _c("v-btn", { attrs: { color: "dark", text: "", small: "" } }, [
               _c("span", { on: { click: _vm.cerrar_session } }, [
                 _vm._v(" logout ")
               ])
@@ -326,9 +313,11 @@ var render = function() {
               _c(
                 "v-list-item-content",
                 [
-                  _c("v-list-item-title", [_vm._v("Application")]),
+                  _c("v-list-item-title"),
                   _vm._v(" "),
-                  _c("v-list-item-subtitle", [_vm._v("Subtext")])
+                  _c("v-list-item-subtitle", [
+                    _vm._v(_vm._s(_vm.user.first_name))
+                  ])
                 ],
                 1
               )
@@ -344,62 +333,18 @@ var render = function() {
             [
               _c(
                 "v-list-item-icon",
-                [_c("v-icon", [_vm._v("mdi-view-dashboard")])],
+                [_c("v-icon", [_vm._v("mdi-account")])],
                 1
               ),
               _vm._v(" "),
               _c(
                 "v-list-item-content",
                 [
-                  _c("router-link", { attrs: { to: "", tag: "span" } }, [
-                    _vm._v(" about")
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-item",
-            { attrs: { link: "" } },
-            [
-              _c(
-                "v-list-item-icon",
-                [_c("v-icon", [_vm._v("mdi-view-dashboard")])],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-item-content",
-                [
-                  _c("router-link", { attrs: { to: "", tag: "span" } }, [
-                    _vm._v(" botones")
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-item",
-            { attrs: { link: "" } },
-            [
-              _c(
-                "v-list-item-icon",
-                [_c("v-icon", [_vm._v("mdi-view-dashboard")])],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-item-content",
-                [
-                  _c("router-link", { attrs: { to: "", tag: "span" } }, [
-                    _vm._v(" grid")
-                  ])
+                  _c(
+                    "router-link",
+                    { attrs: { to: { name: "profile" }, tag: "span" } },
+                    [_vm._v("Profile")]
+                  )
                 ],
                 1
               )
@@ -442,7 +387,7 @@ var render = function() {
       _vm._v(" "),
       _c("Drawer"),
       _vm._v(" "),
-      _c("v-container", [_c("p", [_vm._v("estoy en el home")])])
+      _c("v-container", [_c("router-view")], 1)
     ],
     1
   )

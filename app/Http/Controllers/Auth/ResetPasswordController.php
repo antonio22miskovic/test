@@ -18,9 +18,8 @@ class ResetPasswordController extends Controller
 	{// validacion del email
 
 	  $user = User::where('email',$request->email)->first();
-	  return is_null($user) ? response()->json('email invalido',400) :
-	 				  	     $this->codigo($user->email);
-
+	  return is_null($user) ? response()->json('Email Invalid',400) :
+	 				  	    $this->codigo($user->email);
 	}
 
 	protected function codigo($email)
@@ -113,7 +112,7 @@ class ResetPasswordController extends Controller
 	protected function validacion($codigo, $email)
 	{ // funcion para validar
 
-		$validacion = PasswordReset::where('codigo',$codigo)->where('email',$email)->first();
+		$validacion = PasswordReset::where('code',$codigo)->where('email',$email)->first();
 		return is_null($validacion) ? null : $validacion;
 
 	}
@@ -122,9 +121,9 @@ class ResetPasswordController extends Controller
 	{ // funcion para la insertar en la tabla
 
 		$codigo = Str::random(6); // generacion del codigo
-		$insert = PasswordReset::create(['codigo' => $codigo,
-		 	 						'email' => $email,
-		 	 						'confirmacion' => false ]);
+		$insert = PasswordReset::create(['code' => $codigo,
+		 	 						'email' => $email
+		 	 						]);
 
 		return $insert;
 	}

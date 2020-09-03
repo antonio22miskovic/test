@@ -40,7 +40,7 @@
 import Swal from 'sweetalert2'
 	export default{
 
-		name:'EmailVerifique',
+		name:'UpdatePassword',
 
 		mounted(){
 
@@ -48,7 +48,7 @@ import Swal from 'sweetalert2'
 				this.$router.push({name:'login_in'})
 			}
 
-			this.title = 'actualiza su contraseña'
+			this.title = 'Update Password'
 		},
 
 		data: () => ({
@@ -58,10 +58,10 @@ import Swal from 'sweetalert2'
 			hidePassword:true,
 			hidePassword2:true,
 			rulesnewpassword: {
-        		required: value => !!value || 'introduzaca su nueva contraseña.'
+        		required: value => !!value || 'New Password Required.'
       		},
       		rulesConfirpassword: {
-        		required: value => !!value || 'confirme su contraseña.'
+        		required: value => !!value || 'Passwords are not match.'
       		},
       		error:false
 
@@ -86,7 +86,7 @@ import Swal from 'sweetalert2'
             Swal.fire({
               position: 'center',
               icon: 'success',
-              title: 'Se actualizo correctamente',
+              title: 'Updated Succefull',
               showConfirmButton: false,
               timer: 1500
             })

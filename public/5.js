@@ -1,35 +1,17 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[5],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/auth/Login_in.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/auth/Login_in.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/auth/Email-Recovery.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/auth/Email-Recovery.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _helpers_axiosDefaultHeaders__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../helpers/axiosDefaultHeaders */ "./resources/js/helpers/axiosDefaultHeaders.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -52,61 +34,59 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Login_in',
+  name: 'Email-Recovery',
   mounted: function mounted() {
-    this.title = 'login';
+    this.title = 'Recover your Password';
   },
   data: function data() {
     return {
-      credenciales: {
-        email: '',
-        password: ''
-      },
-      rulesUser: {
+      email: '',
+      error: false,
+      rules: {
         required: function required(value) {
           return !!value || 'E-mail Required.';
+        },
+        email: function email(value) {
+          var pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return pattern.test(value) || 'E-mail Invalid.';
         }
-      },
-      rulesPassword: {
-        required: function required(value) {
-          return !!value || 'Password Required.';
-        }
-      },
-      hidePassword: true,
-      error: false
+      }
     };
   },
   methods: {
-    autenticacion: function autenticacion() {
+    confirmacion: function confirmacion() {
       var _this = this;
 
-      if (!this.$refs.login.validate()) {
+      this.error = false;
+
+      if (!this.$refs.email.validate()) {
         // verificar la validacion
         return;
       }
 
       this.$store.commit('AUTH/LOADING'); // llamamos aesta mutacion que activa el loading
 
-      this.$store.dispatch('AUTH/AUTH', this.credenciales).then(function (res) {
-        // acciones para el login
-        Object(_helpers_axiosDefaultHeaders__WEBPACK_IMPORTED_MODULE_0__["setAuthorization"])(res.access_token); // introducimos el token en el header de axios
+      this.$store.dispatch('AUTH/EMAIL_RESET_PASSWORD', this.email).then(function (res) {
+        _this.$store.commit('AUTH/SET_RESET_EMAIL', res.email);
 
-        _this.error = true;
-
-        _this.$store.commit('AUTH/lOGIN_SUCCESS', res); // si el login es exitoso
-
+        sweetalert2__WEBPACK_IMPORTED_MODULE_1___default.a.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Code send succefull',
+          showConfirmButton: false,
+          timer: 1500
+        });
 
         _this.$router.push({
-          path: '/home'
-        }); // empujamos a la vista home
-
+          name: 'codigo-recovery'
+        });
       })["catch"](function (err) {
-        _this.$store.commit('AUTH/AUTH_ERROR', err); // validamos el error
+        _this.$store.commit('AUTH/AUTH_ERROR', err);
 
-
-        _this.ErrorModal = true;
         _this.error = true;
+        _this.ErrorModal = true;
       });
     }
   },
@@ -135,10 +115,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/auth/Login_in.vue?vue&type=template&id=514483be&":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/auth/Login_in.vue?vue&type=template&id=514483be& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/auth/Email-Recovery.vue?vue&type=template&id=1696c9a8&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/auth/Email-Recovery.vue?vue&type=template&id=1696c9a8& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -155,50 +135,26 @@ var render = function() {
     [
       _c(
         "v-card-text",
+        { attrs: { "min-height": "180" } },
         [
           _c(
             "v-form",
-            { ref: "login" },
+            { ref: "email" },
             [
               _c("v-text-field", {
                 attrs: {
-                  "append-icon": "mdi-email",
-                  name: "login",
-                  label: "E-mail",
-                  type: "text",
+                  "prepend-icon": "mdi-email",
+                  name: "email",
+                  rules: [_vm.rules.required, _vm.rules.email],
                   error: _vm.error,
-                  rules: [_vm.rulesUser.required]
+                  label: "E-mail"
                 },
                 model: {
-                  value: _vm.credenciales.email,
+                  value: _vm.email,
                   callback: function($$v) {
-                    _vm.$set(_vm.credenciales, "email", $$v)
+                    _vm.email = $$v
                   },
-                  expression: "credenciales.email"
-                }
-              }),
-              _vm._v(" "),
-              _c("v-text-field", {
-                attrs: {
-                  type: _vm.hidePassword ? "password" : "text",
-                  "append-icon": _vm.hidePassword ? "mdi-eye" : "mdi-eye-off",
-                  name: "password",
-                  label: "Password",
-                  id: "password",
-                  rules: [_vm.rulesPassword.required],
-                  error: _vm.error
-                },
-                on: {
-                  "click:append": function($event) {
-                    _vm.hidePassword = !_vm.hidePassword
-                  }
-                },
-                model: {
-                  value: _vm.credenciales.password,
-                  callback: function($$v) {
-                    _vm.$set(_vm.credenciales, "password", $$v)
-                  },
-                  expression: "credenciales.password"
+                  expression: "email"
                 }
               }),
               _vm._v(" "),
@@ -213,12 +169,10 @@ var render = function() {
                         color: "success",
                         loading: _vm.loading
                       },
-                      on: { click: _vm.autenticacion }
+                      on: { click: _vm.confirmacion }
                     },
-                    [_vm._v("Login")]
-                  ),
-                  _vm._v(" "),
-                  _c("br")
+                    [_vm._v("enviar")]
+                  )
                 ],
                 1
               )
@@ -231,33 +185,14 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "text-center" },
+        { staticClass: "text-center mt-10" },
         [
           _c(
             "v-btn",
             {
-              attrs: {
-                text: "",
-                color: "secondary",
-                to: { name: "emailVerifique" }
-              }
+              attrs: { text: "", color: "secondary", to: { name: "login_in" } }
             },
-            [_vm._v(" Forgot your Password? ")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "text-center" },
-        [
-          _c(
-            "v-btn",
-            {
-              attrs: { text: "", color: "secondary", to: { name: "registro" } }
-            },
-            [_vm._v(" Register ")]
+            [_vm._v("login")]
           )
         ],
         1
@@ -273,17 +208,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/components/layouts/auth/Login_in.vue":
-/*!***********************************************************!*\
-  !*** ./resources/js/components/layouts/auth/Login_in.vue ***!
-  \***********************************************************/
+/***/ "./resources/js/components/layouts/auth/Email-Recovery.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/layouts/auth/Email-Recovery.vue ***!
+  \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Login_in_vue_vue_type_template_id_514483be___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Login_in.vue?vue&type=template&id=514483be& */ "./resources/js/components/layouts/auth/Login_in.vue?vue&type=template&id=514483be&");
-/* harmony import */ var _Login_in_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login_in.vue?vue&type=script&lang=js& */ "./resources/js/components/layouts/auth/Login_in.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Email_Recovery_vue_vue_type_template_id_1696c9a8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Email-Recovery.vue?vue&type=template&id=1696c9a8& */ "./resources/js/components/layouts/auth/Email-Recovery.vue?vue&type=template&id=1696c9a8&");
+/* harmony import */ var _Email_Recovery_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Email-Recovery.vue?vue&type=script&lang=js& */ "./resources/js/components/layouts/auth/Email-Recovery.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
@@ -299,9 +234,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Login_in_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Login_in_vue_vue_type_template_id_514483be___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Login_in_vue_vue_type_template_id_514483be___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Email_Recovery_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Email_Recovery_vue_vue_type_template_id_1696c9a8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Email_Recovery_vue_vue_type_template_id_1696c9a8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -321,38 +256,38 @@ _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/layouts/auth/Login_in.vue"
+component.options.__file = "resources/js/components/layouts/auth/Email-Recovery.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/layouts/auth/Login_in.vue?vue&type=script&lang=js&":
-/*!************************************************************************************!*\
-  !*** ./resources/js/components/layouts/auth/Login_in.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************/
+/***/ "./resources/js/components/layouts/auth/Email-Recovery.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/layouts/auth/Email-Recovery.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Login_in_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Login_in.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/auth/Login_in.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Login_in_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Email_Recovery_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Email-Recovery.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/auth/Email-Recovery.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Email_Recovery_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/layouts/auth/Login_in.vue?vue&type=template&id=514483be&":
-/*!******************************************************************************************!*\
-  !*** ./resources/js/components/layouts/auth/Login_in.vue?vue&type=template&id=514483be& ***!
-  \******************************************************************************************/
+/***/ "./resources/js/components/layouts/auth/Email-Recovery.vue?vue&type=template&id=1696c9a8&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/layouts/auth/Email-Recovery.vue?vue&type=template&id=1696c9a8& ***!
+  \************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Login_in_vue_vue_type_template_id_514483be___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Login_in.vue?vue&type=template&id=514483be& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/auth/Login_in.vue?vue&type=template&id=514483be&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Login_in_vue_vue_type_template_id_514483be___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Email_Recovery_vue_vue_type_template_id_1696c9a8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Email-Recovery.vue?vue&type=template&id=1696c9a8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/auth/Email-Recovery.vue?vue&type=template&id=1696c9a8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Email_Recovery_vue_vue_type_template_id_1696c9a8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Login_in_vue_vue_type_template_id_514483be___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Email_Recovery_vue_vue_type_template_id_1696c9a8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -15,14 +15,14 @@ export const routes = [
         component: () => import('./../components/layouts/auth/Login_in')
       },
       {
-        path:'email-verifique',
-        name:'emailVerifique',
-        component: () => import('./../components/layouts/auth/EmailVerifique')
+        path:'email-recovery',
+        name:'email-recovery',
+        component: () => import('./../components/layouts/auth/Email-Recovery')
       },
       {
-        path:'codigo-verifique',
-        name:'codigoVerifique',
-        component: () => import('./../components/layouts/auth/CodigoVerifique')
+        path:'code-recovery',
+        name:'code-recovery',
+        component: () => import('./../components/layouts/auth/Code-Recovery')
       },
       {
         path:'update-password',
@@ -30,16 +30,27 @@ export const routes = [
         component: () => import('./../components/layouts/auth/UpdatePassword')
       },
       {
-        path:'/registro',
-        name:'registro',
-        component: () => import('./../components/layouts/auth/Registro')
+        path:'/register',
+        name:'register',
+        component: () => import('./../components/layouts/auth/Register')
       },
     ]// fin del children del index
   },
   {
-    path:'/home',
-    name:'home',
+    path:'/home/',
     component: () => import('./../views/admin/Home'),
+    children:[
+      {
+        path:'/',
+        name:'contact',
+        component: () => import('./../views/admin/Contact')
+      },
+      {
+        path:'profile',
+        name:'profile',
+        component: () => import('./../views/admin/Profile')
+      },
+    ],
     meta: {
       requiresAuth: true
     },

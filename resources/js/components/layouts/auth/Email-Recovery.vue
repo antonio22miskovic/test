@@ -5,7 +5,7 @@
             <v-text-field prepend-icon="mdi-email"
             	v-model="email"
               	name="email"
-                :rules="rules"
+                :rules="[rules.required, rules.email]"
                 :error="error"
                 label="E-mail">
             </v-text-field>
@@ -24,7 +24,7 @@ import { mapState , mapActions , mapMutations } from 'vuex'
 import Swal from 'sweetalert2'
 	export default{
 
-		name:'EmailVerifique',
+		name:'Email-Recovery',
 
 		mounted(){
 			this.title = 'Recover your Password'
@@ -40,7 +40,7 @@ import Swal from 'sweetalert2'
             const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             return pattern.test(value) || 'E-mail Invalid.'
         },
-      }
+      },
 
 		}),
 
@@ -61,7 +61,7 @@ import Swal from 'sweetalert2'
                 showConfirmButton: false,
                 timer: 1500
             })
-					this.$router.push({name:'codigoVerifique'})
+					this.$router.push({name:'codigo-recovery'})
 				})
 				.catch( err => {
 					this.$store.commit('AUTH/AUTH_ERROR',err)

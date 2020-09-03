@@ -97610,46 +97610,58 @@ var routes = [//rutas
 {
   path: '/',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./../views/index/Index */ "./resources/js/views/index/Index.vue"));
+    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./../views/index/Index */ "./resources/js/views/index/Index.vue"));
   },
   children: [{
     path: '/',
     name: 'login_in',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./../components/layouts/auth/Login_in */ "./resources/js/components/layouts/auth/Login_in.vue"));
+      return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./../components/layouts/auth/Login_in */ "./resources/js/components/layouts/auth/Login_in.vue"));
     }
   }, {
-    path: 'email-verifique',
-    name: 'emailVerifique',
+    path: 'email-recovery',
+    name: 'email-recovery',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./../components/layouts/auth/EmailVerifique */ "./resources/js/components/layouts/auth/EmailVerifique.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./../components/layouts/auth/Email-Recovery */ "./resources/js/components/layouts/auth/Email-Recovery.vue"));
     }
   }, {
-    path: 'codigo-verifique',
-    name: 'codigoVerifique',
+    path: 'code-recovery',
+    name: 'code-recovery',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./../components/layouts/auth/CodigoVerifique */ "./resources/js/components/layouts/auth/CodigoVerifique.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./../components/layouts/auth/Code-Recovery */ "./resources/js/components/layouts/auth/Code-Recovery.vue"));
     }
   }, {
     path: 'update-password',
     name: 'updatePassword',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./../components/layouts/auth/UpdatePassword */ "./resources/js/components/layouts/auth/UpdatePassword.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ./../components/layouts/auth/UpdatePassword */ "./resources/js/components/layouts/auth/UpdatePassword.vue"));
     }
   }, {
-    path: '/registro',
-    name: 'registro',
+    path: '/register',
+    name: 'register',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./../components/layouts/auth/Registro */ "./resources/js/components/layouts/auth/Registro.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./../components/layouts/auth/Register */ "./resources/js/components/layouts/auth/Register.vue"));
     }
   }] // fin del children del index
 
 }, {
-  path: '/home',
-  name: 'home',
+  path: '/home/',
   component: function component() {
     return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./../views/admin/Home */ "./resources/js/views/admin/Home.vue"));
   },
+  children: [{
+    path: '/',
+    name: 'contact',
+    component: function component() {
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./../views/admin/Contact */ "./resources/js/views/admin/Contact.vue"));
+    }
+  }, {
+    path: 'profile',
+    name: 'profile',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./../views/admin/Profile */ "./resources/js/views/admin/Profile.vue"));
+    }
+  }],
   meta: {
     requiresAuth: true
   }
@@ -97672,9 +97684,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modules_authModule__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/authModule */ "./resources/js/store/modules/authModule.js");
 /* harmony import */ var _modules_adminHome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/adminHome */ "./resources/js/store/modules/adminHome.js");
+/* harmony import */ var _modules_contactModule__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/contactModule */ "./resources/js/store/modules/contactModule.js");
 /////////////////////////// INDEX DE VUEX MANEJO DE MODULOS DE LA TIENDA //////////////
 
  /// INYECTION DE MODULES
+
 
 
  // instacia de vuex
@@ -97684,8 +97698,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
     AUTH: _modules_authModule__WEBPACK_IMPORTED_MODULE_2__["authModule"],
     // modulo de autenticacion
-    ADMIN_HOME: _modules_adminHome__WEBPACK_IMPORTED_MODULE_3__["adminHome"] // modulo del home del admin
-
+    ADMIN_HOME: _modules_adminHome__WEBPACK_IMPORTED_MODULE_3__["adminHome"],
+    // modulo del home del admin
+    CONTACTMODULE: _modules_contactModule__WEBPACK_IMPORTED_MODULE_4__["contactModule"]
   }
 }); //import { mapState , mapActions , mapMutations } from 'vuex'
 
@@ -98001,7 +98016,7 @@ var authModule = {
               case 0:
                 _context7.prev = 0;
                 _context7.next = 3;
-                return axios.post('/api/auth/registro/user', datos);
+                return axios.post('/api/auth/register/user', datos);
 
               case 3:
                 res = _context7.sent;
@@ -98019,6 +98034,78 @@ var authModule = {
           }
         }, _callee7, null, [[0, 7]]);
       }))();
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/contactModule.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/store/modules/contactModule.js ***!
+  \*****************************************************/
+/*! exports provided: contactModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "contactModule", function() { return contactModule; });
+/////////////////////////// CONTACTS //////////////
+var contactModule = {
+  namespaced: true,
+  state: function state() {
+    return {
+      contacts: [],
+      valid: false,
+      pull: [],
+      dialog: false,
+      b: true,
+      filtering_error: false,
+      search: '',
+      show_errors: false,
+      paginate: {
+        'total': 0,
+        'current_page': 0,
+        'per_page': 0,
+        'last_page': 0,
+        'from': 0,
+        'to': 0
+      }
+    };
+  },
+  mutations: {
+    SEARCH: function SEARCH(state, payload) {
+      state.search = payload;
+    },
+    SET_PAGINATE: function SET_PAGINATE(state, payload) {
+      state.paginate = payload;
+    },
+    SET_CONTACT: function SET_CONTACT(state, payload) {
+      state.contacts = payload;
+    },
+    DIALOG_UPDATE: function DIALOG_UPDATE(state, payload) {
+      state.dialog = payload;
+    },
+    PULL_UPDATE: function PULL_UPDATE(state, payload) {
+      state.pull = payload;
+      state.dialog = true;
+    }
+  },
+  actions: {
+    GET: function GET(context, page) {
+      axios.get('/api/contact?page=' + page).then(function (res) {
+        if (res.data.contact.data.length > 0) {
+          context.commit('SET_CONTACT', res.data.contact.data);
+          context.commit('SET_PAGINATE', res.data.paginate);
+        }
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    DELETE: function DELETE(context, id) {
+      axios["delete"]('/api/contact/' + id).then(function (res) {})["catch"](function (err) {
+        console.log(err);
+      });
     }
   }
 };

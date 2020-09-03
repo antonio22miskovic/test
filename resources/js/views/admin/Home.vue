@@ -3,8 +3,7 @@
 		<Navbar/>
 		<Drawer/>
 		<v-container>
-			<p>estoy en el home</p>
-
+			<router-view/>
 		</v-container>
 	</div>
 </template>

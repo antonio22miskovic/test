@@ -27,14 +27,14 @@
 import Swal from 'sweetalert2'
 	export default{
 
-		name:'EmailVerifique',
+		name:'Email-Recovery',
 
 		mounted(){
 
 			if (this.$store.state.AUTH.resetemail === null) {
 				this.$router.push({name:'login_in'})
 			}
-			this.title = 'confirmacion de codigo'
+			this.title = 'Verificate Code'
 		},
 
 		data: () => ({
@@ -43,7 +43,7 @@ import Swal from 'sweetalert2'
 			error:false,
 			loading2:false,
 			rules: {
-        		required: value => !!value || 'El codigo es requerido.'
+        		required: value => !!value || 'Code Required.'
       		}
 
 		}),
@@ -81,7 +81,7 @@ import Swal from 'sweetalert2'
 						Swal.fire({
   							position:'center',
   							icon: 'success',
-  							title: 'Se actualizo el Codigo verifique su E-mail',
+  							title: 'code send, check your E-mail',
   							showConfirmButton: false,
   							timer: 1500
 						})
@@ -92,7 +92,7 @@ import Swal from 'sweetalert2'
 				})
 				.catch( err =>{
 					this.loading2 = false
-					this.$store.commit('AUTH/AUTH_ERROR','no se pudo actualizar el codigo')
+					this.$store.commit('AUTH/AUTH_ERROR','There is a Error')
 					this.ErrorModal = true
 
 				})

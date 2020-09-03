@@ -16,8 +16,8 @@
             </v-list-item-avatar>
 
             <v-list-item-content>
-              <v-list-item-title>Application</v-list-item-title>
-              <v-list-item-subtitle>Subtext</v-list-item-subtitle>
+              <v-list-item-title></v-list-item-title>
+              <v-list-item-subtitle>{{user.first_name}}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
 
@@ -26,26 +26,10 @@
           <!-- SECCION DE BOTONES DE DRAWER -->
           <v-list-item link>
             <v-list-item-icon>
-              <v-icon>mdi-view-dashboard</v-icon>
+              <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-               <router-link to="" tag="span"> about</router-link>
-            </v-list-item-content>
-          </v-list-item>
-           <v-list-item link>
-            <v-list-item-icon>
-              <v-icon>mdi-view-dashboard</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-                <router-link to="" tag="span"> botones</router-link>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item link>
-           <v-list-item-icon>
-              <v-icon>mdi-view-dashboard</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-               <router-link to="" tag="span"> grid</router-link>
+               <router-link :to="{name: 'profile'}" tag="span">Profile</router-link>
             </v-list-item-content>
           </v-list-item>
              <!-- FIN SECCION DE BOTONES DE DRAWER -->
@@ -53,7 +37,7 @@
       </v-navigation-drawer>
 </template>
 <script>
-// import { mapState , mapGetters , mapActions , mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 	export default{
 		name:'Drawer',
 
@@ -74,6 +58,9 @@
         background: false,
 		}),
 		computed: {
+      user(){
+        return this.$store.state.AUTH.currentUser
+      },
       drawerOn:{
         get(){
           return this.$store.state.ADMIN_HOME.drawer

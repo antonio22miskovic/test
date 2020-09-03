@@ -25,10 +25,10 @@ class UserRequest extends FormRequest
     {
         return [
 
-            'name'     => 'required|unique:users|max:10',
-            'email'    => 'required|unique:users|email:rfc,dns',
-            'password' => 'required'
-
+            'first_name'     => 'required',
+            'last_name'      => 'required',
+            'contact_number' => 'required|number',
+            'email'          => 'required|unique:users|email:rfc,dns',
         ];
     }
 
@@ -36,14 +36,12 @@ class UserRequest extends FormRequest
     {
         return [
 
-            'name.required'     => 'debe introduzir un usuario',
-            'name.unique'       => 'Usuario no se encuentra disponible',
-            'name.max'          => 'el nombre del usuario no puede ser mayor a 10 caracteres',
+            'first_name.required'     => 'First name  required',
+            'last_name.required'       => 'last name required',
+            'contact_number.required'          => ' contact number required',
             'email.required'    => 'debe introducir un email',
             'email.unique'      => 'E-mail no se encuentra disponible',
             'email.email'       => 'debe introducir un email valido',
-            'password.required' => 'debe introducir una contraseña valida'
-
         ];
 
     }

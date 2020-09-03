@@ -23,7 +23,6 @@ class JwtController extends Controller
     {
         $this->middleware('jwt.init', ['except' => ['login','store']]);
     }
-
     /**
      * Get a JWT via given credentials.
      *
@@ -32,7 +31,7 @@ class JwtController extends Controller
     public function login()
     { // funcion para crear el token eh iniciar session
 
-        $credentials = request(['Email', 'Password']);
+        $credentials = request(['email', 'password']);
         $token = JWTAuth::attempt($credentials);
         return !$token ? response()->json(['error' => 'Not Autorization'],400) :
                          response()->json(['access_token' => $token,
@@ -50,14 +49,10 @@ class JwtController extends Controller
      { // obtener el usuario logeado
 
         try {
-
             $user = JWTAuth::parseToken()->authenticate();
             return  response()->json(['user' => $user,'status' => 200],200);
-
         } catch (JWTException $e) {
-
             return  response()->json(['mensaje' => $e,'status' => 500],500);
-
         }
 
     }
@@ -85,7 +80,9 @@ class JwtController extends Controller
               return response()->json(['mensaje' => 'session it is over ','confirmation' => true],200);
 
         } catch (JWTException $e) {
+
               return  response()->json(['mensaje' => $e, 'status' => 500],500);
+
         }
 
     }
@@ -94,11 +91,11 @@ class JwtController extends Controller
     {// registro de usuario
         try {
         $user = User::create([
-                'First_Name' => $request['First_Name'],
-                'Last_Name' => $request['Last_Name'],
-                'Contact_Number' => $request['Contact_Number'],
-                'Email' => $request['Email'],
-                'Password' => Hash::make($request['Password'])
+                'first_name' => $request['first_name'],
+                'last_name' => $request['last_name'],
+                'contact_number' => $request['contact_number'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password'])
             ]);
             return response()->json(['message' => 'user register succefull', 'user' => $user],200);
         } catch (Exception $e) {

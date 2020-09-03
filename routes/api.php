@@ -15,7 +15,7 @@ Route::group(['prefix' => 'auth'], function ($router) {
     	Route::post('logout', 'Auth\JwtController@logout');
         Route::post('refresh', 'Auth\JwtController@refresh');
     	Route::post('get-auth-user', 'Auth\JwtController@getAuthUser');
-    	Route::post('registro/user', 'Auth\JwtController@store');
+    	Route::post('register/user', 'Auth\JwtController@store');
 
 	});
 
@@ -23,9 +23,13 @@ Route::group(['prefix' => 'auth'], function ($router) {
 // rutas de reseteo de contraseña
 Route::group(['prefix' => 'reset'], function ($router) {
 
-	Route::post('email-vereificacion','Auth\ResetPasswordController@emailValidate');
-	Route::post('codigo-vereificacion','Auth\ResetPasswordController@ConfirmeCodigo');
+	Route::post('email-vereification','Auth\ResetPasswordController@emailValidate');
+	Route::post('codigo-vereification','Auth\ResetPasswordController@ConfirmeCodigo');
 	Route::post('update-password','Auth\ResetPasswordController@UpdatePassword');
 	Route::post('update-codigo','Auth\ResetPasswordController@refreshCodigo');
 
 });
+
+
+Route::apiResource('contact','Contact\ContactController');
+Route::get('search/{dato}', 'Contact\SearchController@search');

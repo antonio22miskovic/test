@@ -1,9 +1,8 @@
 <?php
 
-use App\Models\Rol;
 use Illuminate\Database\Seeder;
 
-class RolSeeder extends Seeder
+class ContactSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +11,6 @@ class RolSeeder extends Seeder
      */
     public function run()
     {
-        Rol::create(['name' => 'admin']);
-        Rol::create(['name' => 'contact']);
+        factory(App\Models\User::class,100)->create();
     }
 }
