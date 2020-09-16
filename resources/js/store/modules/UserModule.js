@@ -1,13 +1,13 @@
 
 /////////////////////////// CONTACTS //////////////
 
-export const contactModule = {
+export const UserModule = {
 
 	namespaced: true,
 
 	state : () => ({
 
-    	contacts:[],
+    	users:[],
 		valid:false,
 		pull:[],
 		dialog:false,
@@ -64,9 +64,9 @@ export const contactModule = {
 	actions:{
 
 		GET(context, page){
-			 axios.get('/api/contact?page='+page).then(res=>{
-			 	if (res.data.contact.data.length > 0) {
-			 		context.commit('SET_CONTACT',res.data.contact.data)
+			 axios.get('/api/user?page='+page).then(res=>{
+			 	if (res.data.user.data.length > 0) {
+			 		context.commit('SET_CONTACT',res.data.user.data)
 					context.commit('SET_PAGINATE',res.data.paginate)
 			 	}
 
@@ -76,7 +76,7 @@ export const contactModule = {
 			 })
 		},
 		DELETE(context, id){
-			 axios.delete('/api/contact/'+id).then(res=>{
+			 axios.delete('/api/user/'+id).then(res=>{
 
 			}).
 			 catch(err =>{

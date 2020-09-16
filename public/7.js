@@ -121,6 +121,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.commit('AUTH/LOADING'); // llamamos a esta mutacion que activa el loading
 
       this.$store.dispatch('AUTH/STORE_USER', this.data).then(function (res) {
+        console.log(res.validate);
+
         if (res.validation === undefined) {
           // comprobamos si hay errores de validacion
           _this.$store.commit('AUTH/LOADING_FALSE');

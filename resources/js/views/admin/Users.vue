@@ -13,7 +13,7 @@
       		<v-container>
       			<v-row>
       				<v-col>
-      					<v-card-title><v-icon color="nav">mdi-account-multiple</v-icon> Contact </v-card-title>
+      					<v-card-title><v-icon color="nav">mdi-account-multiple</v-icon> Users </v-card-title>
       				</v-col>
       				<v-col>
       					<v-form ref="search">
@@ -29,7 +29,7 @@
       			</v-row>
       		</v-container>
       		<v-container>
-      			<v-simple-table v-if="contacts.length > 0"  height="300px" fixed-header>
+      			<v-simple-table v-if="users.length > 0"  height="300px" fixed-header>
     				<template v-slot:default>
       					<thead>
         					<tr>
@@ -42,7 +42,7 @@
           					</tr>
       					</thead>
       					<tbody>
-        					<tr v-for="item in contacts" :key="item.id">
+        					<tr v-for="item in users" :key="item.id">
           						<td>{{ item.first_name }}</td>
           						<td>{{ item.last_name }}</td>
           						<td>{{ item.email }}</td>
@@ -62,7 +62,7 @@
     				</template>
   				</v-simple-table>
       		</v-container>
-    		<template v-if="contacts.length > 0">
+    		<template v-if="users.length > 0">
   				<div class="text-center">
   					<v-container>
     					<v-row justify="center">
@@ -80,7 +80,7 @@
   					</v-container>
   				</div>
 			</template>
-			<template v-if="contacts < 1">
+			<template v-if="users < 1">
 				<v-container>
 			 		<v-alert
       		  			outlined
@@ -88,7 +88,7 @@
       		  			prominent
       		  			border="left"
     		  			>
-						No registered contacts!
+						No registered users!
    			 		</v-alert>
    				</v-container>
 			</template>
@@ -116,7 +116,7 @@
 		methods:{
 
 			getContact(page){
-				this.$store.dispatch('CONTACTMODULE/GET', page)
+				this.$store.dispatch('USERMODULE/GET', page)
 			},
 
 			filter(){
@@ -124,7 +124,7 @@
 			},
 
 			modal_edit(item){
-				this.$store.commit('CONTACTMODULE/PULL_UPDATE',item)
+				this.$store.commit('USERMODULE/PULL_UPDATE',item)
 			},
 
 			modal_details(item){
@@ -142,7 +142,7 @@
   					confirmButtonText: 'Yes, delete it!'
 					}).then((result) => {
   					if (result.value) {
-  						this.$store.dispatch('CONTACTMODULE/DELETE',item)
+  						this.$store.dispatch('USERMODULE/DELETE',item)
     					Swal.fire(
       						'Deleted!',
       						'Your file has been deleted.',
@@ -164,50 +164,50 @@
 
 		computed:{
 
-			contacts(){
+			users(){
 
-					return this.$store.state.CONTACTMODULE.contacts
+					return this.$store.state.USERMODULE.users
 			},
 
 			search:{
 				set(value){
-					return this.$store.commit('CONTACTMODULE/SEARCH')
+					return this.$store.commit('USERMODULE/SEARCH')
 				},
 				get(){
-					return this.$store.state.CONTACTMODULE.search
+					return this.$store.state.USERMODULE.search
 				}
 			},
 
 			filtering_error(){
-				return this.$store.state.CONTACTMODULE.filtering_error
+				return this.$store.state.USERMODULE.filtering_error
 			},
 
 			valid(){
-				return this.$store.state.CONTACTMODULE.valid
+				return this.$store.state.USERMODULE.valid
 			},
 
 			loading(){
-				return this.$store.state.CONTACTMODULE.loading
+				return this.$store.state.USERMODULE.loading
 			},
 
 			b(){
-				return this.$store.state.CONTACTMODULE.b
+				return this.$store.state.USERMODULE.b
 			},
 
 			search_off(){
-				return this.$store.state.CONTACTMODULE.search_off
+				return this.$store.state.USERMODULE.search_off
 			},
 
 			show_errors(){
-				return this.$store.state.CONTACTMODULE.show_errors
+				return this.$store.state.USERMODULE.show_errors
 			},
 
 			paginate:{
 				set(value){
-					return this.$store.commit('CONTACTMODULE/SET_PAGINATE', value)
+					return this.$store.commit('USERMODULE/SET_PAGINATE', value)
 				},
 				get(){
-					return this.$store.state.CONTACTMODULE.paginate
+					return this.$store.state.USERMODULE.paginate
 				}
 			},
 

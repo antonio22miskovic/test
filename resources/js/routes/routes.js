@@ -42,8 +42,8 @@ export const routes = [
     children:[
       {
         path:'/',
-        name:'contact',
-        component: () => import('./../views/admin/Contact')
+        name:'users',
+        component: () => import('./../views/admin/Users')
       },
       {
         path:'profile',

@@ -27,7 +27,6 @@ class UserRequest extends FormRequest
 
             'first_name'     => 'required',
             'last_name'      => 'required',
-            'contact_number' => 'required|number',
             'email'          => 'required|unique:users|email:rfc,dns',
         ];
     }
@@ -36,12 +35,11 @@ class UserRequest extends FormRequest
     {
         return [
 
-            'first_name.required'     => 'First name  required',
+            'first_name.required'      => 'First name  required',
             'last_name.required'       => 'last name required',
-            'contact_number.required'          => ' contact number required',
-            'email.required'    => 'debe introducir un email',
-            'email.unique'      => 'E-mail no se encuentra disponible',
-            'email.email'       => 'debe introducir un email valido',
+            'email.required'           => 'debe introducir un email',
+            'email.unique'             => 'E-mail no se encuentra disponible',
+            'email.email'              => 'debe introducir un email valido',
         ];
 
     }

@@ -112,7 +112,7 @@ import Swal from 'sweetalert2'
         }
         this.$store.commit('AUTH/LOADING') // llamamos a esta mutacion que activa el loading
         this.$store.dispatch('AUTH/STORE_USER',this.data).then(res => {
-
+            console.log(res.validate)
           if (res.validation === undefined) {// comprobamos si hay errores de validacion
               this.$store.commit('AUTH/LOADING_FALSE')
                Swal.fire({

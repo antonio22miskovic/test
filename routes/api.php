@@ -30,6 +30,4 @@ Route::group(['prefix' => 'reset'], function ($router) {
 
 });
 
-
-Route::apiResource('contact','Contact\ContactController');
-Route::get('search/{dato}', 'Contact\SearchController@search');
+Route::apiResource('user','User\UserController');

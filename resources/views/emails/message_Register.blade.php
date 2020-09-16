@@ -4,6 +4,8 @@
 	<title>MESSAGE</title>
 </head>
 <body>
-	<h2> “We added you in our contact list. Thank you.” </h2>
+	<div>
+		<h1> Bienvenido ah sido registrado exitosamente en el sistema</h1>
+	</div>
 </body>
 </html>

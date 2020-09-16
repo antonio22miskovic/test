@@ -97651,9 +97651,9 @@ var routes = [//rutas
   },
   children: [{
     path: '/',
-    name: 'contact',
+    name: 'users',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./../views/admin/Contact */ "./resources/js/views/admin/Contact.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./../views/admin/Users */ "./resources/js/views/admin/Users.vue"));
     }
   }, {
     path: 'profile',
@@ -97684,7 +97684,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modules_authModule__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/authModule */ "./resources/js/store/modules/authModule.js");
 /* harmony import */ var _modules_adminHome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/adminHome */ "./resources/js/store/modules/adminHome.js");
-/* harmony import */ var _modules_contactModule__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/contactModule */ "./resources/js/store/modules/contactModule.js");
+/* harmony import */ var _modules_UserModule__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/UserModule */ "./resources/js/store/modules/UserModule.js");
 /////////////////////////// INDEX DE VUEX MANEJO DE MODULOS DE LA TIENDA //////////////
 
  /// INYECTION DE MODULES
@@ -97700,9 +97700,81 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     // modulo de autenticacion
     ADMIN_HOME: _modules_adminHome__WEBPACK_IMPORTED_MODULE_3__["adminHome"],
     // modulo del home del admin
-    CONTACTMODULE: _modules_contactModule__WEBPACK_IMPORTED_MODULE_4__["contactModule"]
+    USERMODULE: _modules_UserModule__WEBPACK_IMPORTED_MODULE_4__["UserModule"]
   }
 }); //import { mapState , mapActions , mapMutations } from 'vuex'
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/UserModule.js":
+/*!**************************************************!*\
+  !*** ./resources/js/store/modules/UserModule.js ***!
+  \**************************************************/
+/*! exports provided: UserModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserModule", function() { return UserModule; });
+/////////////////////////// CONTACTS //////////////
+var UserModule = {
+  namespaced: true,
+  state: function state() {
+    return {
+      users: [],
+      valid: false,
+      pull: [],
+      dialog: false,
+      b: true,
+      filtering_error: false,
+      search: '',
+      show_errors: false,
+      paginate: {
+        'total': 0,
+        'current_page': 0,
+        'per_page': 0,
+        'last_page': 0,
+        'from': 0,
+        'to': 0
+      }
+    };
+  },
+  mutations: {
+    SEARCH: function SEARCH(state, payload) {
+      state.search = payload;
+    },
+    SET_PAGINATE: function SET_PAGINATE(state, payload) {
+      state.paginate = payload;
+    },
+    SET_CONTACT: function SET_CONTACT(state, payload) {
+      state.contacts = payload;
+    },
+    DIALOG_UPDATE: function DIALOG_UPDATE(state, payload) {
+      state.dialog = payload;
+    },
+    PULL_UPDATE: function PULL_UPDATE(state, payload) {
+      state.pull = payload;
+      state.dialog = true;
+    }
+  },
+  actions: {
+    GET: function GET(context, page) {
+      axios.get('/api/user?page=' + page).then(function (res) {
+        if (res.data.user.data.length > 0) {
+          context.commit('SET_CONTACT', res.data.user.data);
+          context.commit('SET_PAGINATE', res.data.paginate);
+        }
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    DELETE: function DELETE(context, id) {
+      axios["delete"]('/api/user/' + id).then(function (res) {})["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  }
+};
 
 /***/ }),
 
@@ -98034,78 +98106,6 @@ var authModule = {
           }
         }, _callee7, null, [[0, 7]]);
       }))();
-    }
-  }
-};
-
-/***/ }),
-
-/***/ "./resources/js/store/modules/contactModule.js":
-/*!*****************************************************!*\
-  !*** ./resources/js/store/modules/contactModule.js ***!
-  \*****************************************************/
-/*! exports provided: contactModule */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "contactModule", function() { return contactModule; });
-/////////////////////////// CONTACTS //////////////
-var contactModule = {
-  namespaced: true,
-  state: function state() {
-    return {
-      contacts: [],
-      valid: false,
-      pull: [],
-      dialog: false,
-      b: true,
-      filtering_error: false,
-      search: '',
-      show_errors: false,
-      paginate: {
-        'total': 0,
-        'current_page': 0,
-        'per_page': 0,
-        'last_page': 0,
-        'from': 0,
-        'to': 0
-      }
-    };
-  },
-  mutations: {
-    SEARCH: function SEARCH(state, payload) {
-      state.search = payload;
-    },
-    SET_PAGINATE: function SET_PAGINATE(state, payload) {
-      state.paginate = payload;
-    },
-    SET_CONTACT: function SET_CONTACT(state, payload) {
-      state.contacts = payload;
-    },
-    DIALOG_UPDATE: function DIALOG_UPDATE(state, payload) {
-      state.dialog = payload;
-    },
-    PULL_UPDATE: function PULL_UPDATE(state, payload) {
-      state.pull = payload;
-      state.dialog = true;
-    }
-  },
-  actions: {
-    GET: function GET(context, page) {
-      axios.get('/api/contact?page=' + page).then(function (res) {
-        if (res.data.contact.data.length > 0) {
-          context.commit('SET_CONTACT', res.data.contact.data);
-          context.commit('SET_PAGINATE', res.data.paginate);
-        }
-      })["catch"](function (err) {
-        console.log(err);
-      });
-    },
-    DELETE: function DELETE(context, id) {
-      axios["delete"]('/api/contact/' + id).then(function (res) {})["catch"](function (err) {
-        console.log(err);
-      });
     }
   }
 };
