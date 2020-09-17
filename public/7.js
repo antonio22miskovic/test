@@ -9,8 +9,16 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -87,11 +95,10 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       data: {
-        First_Name: '',
-        Last_Name: '',
-        Contact_Number: '',
-        Email: '',
-        Password: ''
+        first_name: '',
+        last_name: '',
+        email: '',
+        password: ''
       },
       confirm_password: '',
       hidePassword: true,
@@ -114,42 +121,74 @@ __webpack_require__.r(__webpack_exports__);
     register: function register() {
       var _this = this;
 
-      if (this.$refs.register.resetValidation()) {
-        return;
-      }
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (!_this.$refs.register.resetValidation()) {
+                  _context.next = 2;
+                  break;
+                }
 
-      this.$store.commit('AUTH/LOADING'); // llamamos a esta mutacion que activa el loading
+                return _context.abrupt("return");
 
-      this.$store.dispatch('AUTH/STORE_USER', this.data).then(function (res) {
-        console.log(res.validate);
+              case 2:
+                _this.$store.commit('AUTH/LOADING'); // llamamos a esta mutacion que activa el loading
 
-        if (res.validation === undefined) {
-          // comprobamos si hay errores de validacion
-          _this.$store.commit('AUTH/LOADING_FALSE');
 
-          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Register Succefull',
-            showConfirmButton: false,
-            timer: 1500
-          });
+                console.log('el error esta de aqui para abajo');
+                _context.prev = 4;
+                _context.next = 7;
+                return _this.$store.dispatch('AUTH/STORE_USER', _this.data);
 
-          _this.reset();
+              case 7:
+                res = _context.sent;
+                console.log('error es el impostor');
 
-          _this.$router.push({
-            name: 'login_in'
-          });
-        } else {
-          // si hay errores  veremos cual es
-          _this.validacion(res.validation);
+                _this.$store.commit('AUTH/LOADING_FALSE');
 
-          _this.$store.commit('AUTH/LOADING_FALSE');
-        }
-      })["catch"](function (err) {
-        return console.log(err);
-      });
-      this.$store.commit('AUTH/LOADING_FALSE');
+                sweetalert2__WEBPACK_IMPORTED_MODULE_1___default.a.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'Register Succefull',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+
+                _this.reset();
+
+                _this.$router.push({
+                  name: 'login_in'
+                });
+
+                console.log('error pero solo era un tripulante');
+
+                _this.validacion(res.validation);
+
+                _this.$store.commit('AUTH/LOADING_FALSE');
+
+                _context.next = 24;
+                break;
+
+              case 18:
+                _context.prev = 18;
+                _context.t0 = _context["catch"](4);
+                console.log(_context.t0);
+                console.log(_context.t0.response);
+
+                _this.$store.commit('AUTH/LOADING_FALSE');
+
+                _this.reset();
+
+              case 24:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[4, 18]]);
+      }))();
     },
     reset: function reset() {
       this.$refs.register.reset();
@@ -233,11 +272,11 @@ var render = function() {
                   required: ""
                 },
                 model: {
-                  value: _vm.data.First_Name,
+                  value: _vm.data.first_name,
                   callback: function($$v) {
-                    _vm.$set(_vm.data, "First_Name", $$v)
+                    _vm.$set(_vm.data, "first_name", $$v)
                   },
-                  expression: "data.First_Name"
+                  expression: "data.first_name"
                 }
               }),
               _vm._v(" "),
@@ -254,11 +293,11 @@ var render = function() {
                   required: ""
                 },
                 model: {
-                  value: _vm.data.Last_Name,
+                  value: _vm.data.last_name,
                   callback: function($$v) {
-                    _vm.$set(_vm.data, "Last_Name", $$v)
+                    _vm.$set(_vm.data, "last_name", $$v)
                   },
-                  expression: "data.Last_Name"
+                  expression: "data.last_name"
                 }
               }),
               _vm._v(" "),
@@ -287,7 +326,7 @@ var render = function() {
                   "append-icon": "mdi-lock",
                   type: "password",
                   name: "Password",
-                  label: "New Password",
+                  label: "Password",
                   id: "Password",
                   rules: [
                     function(v) {
@@ -309,7 +348,7 @@ var render = function() {
                   type: _vm.hidePassword ? "password" : "text",
                   "append-icon": _vm.hidePassword ? "mdi-eye" : "mdi-eye-off",
                   name: "confirm_password",
-                  label: "confirma la contraseña",
+                  label: "confirm Password",
                   id: "confirm_password",
                   rules: [
                     _vm.data.password === _vm.confirm_password ||

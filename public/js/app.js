@@ -97423,7 +97423,6 @@ function handler(store, router) {
 
   axios.interceptors.response.use(function (response) {
     var headers = response.headers;
-    console.log(headers);
 
     if (headers.authorization !== undefined) {
       var updateToken = store.state.AUTH.currentUser;
@@ -98086,25 +98085,19 @@ var authModule = {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
-                _context7.prev = 0;
-                _context7.next = 3;
-                return axios.post('/api/auth/register/user', datos);
+                _context7.next = 2;
+                return axios.post('/api/user', datos);
 
-              case 3:
-                res = _context7.sent;
-                return _context7.abrupt("return", res.data);
+              case 2:
+                res = _context7.sent.data;
+                return _context7.abrupt("return", res);
 
-              case 7:
-                _context7.prev = 7;
-                _context7.t0 = _context7["catch"](0);
-                return _context7.abrupt("return", _context7.t0);
-
-              case 10:
+              case 4:
               case "end":
                 return _context7.stop();
             }
           }
-        }, _callee7, null, [[0, 7]]);
+        }, _callee7);
       }))();
     }
   }

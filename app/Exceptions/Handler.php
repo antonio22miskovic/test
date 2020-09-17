@@ -5,10 +5,10 @@ namespace App\Exceptions;
 // use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 use \Illuminate\Database\Eloquent\ModelNotFoundException;
 use \Illuminate\Database\QueryException;
-use \Illuminate\validation\ValidationException;
 use \Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
@@ -52,23 +52,42 @@ protected $dontFlash = [
     public function render($request, Throwable $exception)
     {
             if ($exception instanceof ModelNotFoundException) {
-                return response()->json(['mensaje'=>'uuppsss disculpe por ahora no podremos procesar su peticion por favor intente mas tarde','status'=>400],400);
+                return response()
+                       ->json([
+                                'mensaje'=>'uuppsss disculpe por ahora no podremos procesar su peticion por favor intente mas tarde',
+                                'status'=>400],
+                                400);
             }
 
              if ($exception instanceof ValidationException) {
-                return response()->json(['validation'=>$exception->validator->errors(),'status'=>400]);
+                return response()
+                       ->json([
+                                'validation'=> $exception->validator->errors(),
+                                'status'=>400],
+                                400);
             }
 
              if ($exception instanceof QueryException) {
-                return response()->json(['mensaje'=>'uff'.$exception->getMessage(),'status'=>400],400);
+                return response()
+                       ->json([
+                                'mensaje'=>'uff'.$exception->getMessage(),
+                                'status'=>400],
+                                400);
             }
 
              if ($exception instanceof HttpException) {
-                return response()->json(['mensaje'=>'ruta no encontrada','status'=>404],404);
+                return response()
+                       ->json([
+                                'mensaje'=>'ruta no encontrada',
+                                'status'=>404],
+                                404);
             }
 
              if ($exception instanceof AuthenticationException) {
-                return response()->json(['mensaje'=>'autorizacion denegada','status'=>401],401);
+                return response()
+                      ->json(['mensaje'=>'autorizacion denegada',
+                              'status'=>401],
+                              401);
             }
 
         return parent::render($request, $exception);

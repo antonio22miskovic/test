@@ -7,6 +7,7 @@ use App\Http\Requests\UserRequest;
 use App\Mail\EmailRegister;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
@@ -28,12 +29,12 @@ class UserController extends Controller
 
             'paginate' => [
 
-                'total' => $users->total(),
+                'total'        => $users->total(),
                 'current_page' => $users->currentPage(),
-                'per_page' => $users->perPage(),
-                'last_page' => $users->lastPage(),
-                'from' => $users->firstItem(),
-                'to' => $users->lastPage(),
+                'per_page'     => $users->perPage(),
+                'last_page'    => $users->lastPage(),
+                'from'         => $users->firstItem(),
+                'to'           => $users->lastPage(),
 
             ],
 
@@ -50,18 +51,24 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-       $user = User::create([
+        try {
+            $user = User::create([
 
-            'first_name' => $request['first_name'],
-            'last_name' => $request['last_name'],
+            'first_name'     => $request['first_name'],
+            'last_name'      => $request['last_name'],
             'contact_number' => $request['contact_number'],
-            'email' => $request['email'],
-            'rol_id' => 2
+            'email'          => $request['email'],
+            'rol_id'         => 2,
+            'password' => Hash::make($request['password'])
 
-        ]);
+            ]);
 
-           Mail::to($user->email)->send(new EmailRegister());
-           return true;
+           // Mail::to($user->email)->send(new EmailRegister());
+            return response()->json(['message' => 'user register succefull', 'user' => $user],200);
+        } catch (Exception $e) {
+            return response()->json($e,500);
+
+        }
     }
 
     /**

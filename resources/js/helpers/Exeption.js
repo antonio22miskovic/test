@@ -25,7 +25,6 @@ export function handler(store, router){
 	// detecta si envie el nuevo token en el header para actualizarlo en el localstore
 	axios.interceptors.response.use((response) => {
   		let headers = response.headers
-  		console.log(headers)
   		if (headers.authorization !== undefined) {
   				let updateToken = store.state.AUTH.currentUser
   				updateToken.token = headers.authorization

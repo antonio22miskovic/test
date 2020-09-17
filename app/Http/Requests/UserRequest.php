@@ -27,7 +27,7 @@ class UserRequest extends FormRequest
 
             'first_name'     => 'required',
             'last_name'      => 'required',
-            'email'          => 'required|unique:users|email:rfc,dns',
+            'email'          => 'required|unique:users|email',
         ];
     }
 

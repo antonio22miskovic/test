@@ -87,21 +87,4 @@ class JwtController extends Controller
 
     }
 
-    public function store(UserRequest $request)
-    {// registro de usuario
-        try {
-        $user = User::create([
-                'first_name' => $request['first_name'],
-                'last_name' => $request['last_name'],
-                'contact_number' => $request['contact_number'],
-                'email' => $request['email'],
-                'password' => Hash::make($request['password'])
-            ]);
-            return response()->json(['message' => 'user register succefull', 'user' => $user],200);
-        } catch (Exception $e) {
-            return response()->json(['message' => 'there is a error', 'error' => $e],500);
-        }
-
-    }
-
 }

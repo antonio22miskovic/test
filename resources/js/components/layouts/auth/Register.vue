@@ -6,7 +6,7 @@
 
         		<v-text-field
         			append-icon="mdi-account"
-      				v-model="data.First_Name"
+      				v-model="data.first_name"
       				:counter="10"
       				:rules="[	v => !!v || 'First Name Required.']"
       				label="First Name"
@@ -15,7 +15,7 @@
 
           <v-text-field
               append-icon="mdi-account"
-              v-model="data.Last_Name"
+              v-model="data.last_name"
               :counter="10"
               :rules="[ v => !!v || 'Last Name Required.']"
               label="Last Name"
@@ -36,7 +36,7 @@
    		 			append-icon="mdi-lock"
             		type="password"
             		name="Password"
-            		label="New Password"
+            		label="Password"
             		id="Password"
             		:rules="[v => !!v || 'Password Required']"
             		v-model="data.password"
@@ -47,7 +47,7 @@
             		:type="hidePassword ? 'password' : 'text'"
             		:append-icon="hidePassword ? 'mdi-eye' : 'mdi-eye-off'"
             		name="confirm_password"
-            		label="confirma la contraseña"
+            		label="confirm Password"
             		id="confirm_password"
             		:rules="[(data.password === confirm_password) || 'password do not match']"
             		v-model="confirm_password"
@@ -80,11 +80,10 @@ import Swal from 'sweetalert2'
 		data: () => ({
 
 			data:{
-				First_Name:'',
-        Last_Name:'',
-        Contact_Number:'',
-        Email:'',
-        Password:'',
+				first_name:'',
+        last_name:'',
+        email:'',
+        password:'',
 			},
 			confirm_password:'',
 			hidePassword:true,
@@ -105,33 +104,42 @@ import Swal from 'sweetalert2'
 
 		methods:{
 
-			register(){
+		async	register(){
 
         if (this.$refs.register.resetValidation()) {
             return
         }
         this.$store.commit('AUTH/LOADING') // llamamos a esta mutacion que activa el loading
-        this.$store.dispatch('AUTH/STORE_USER',this.data).then(res => {
-            console.log(res.validate)
-          if (res.validation === undefined) {// comprobamos si hay errores de validacion
-              this.$store.commit('AUTH/LOADING_FALSE')
-               Swal.fire({
-                position:'center',
-                icon: 'success',
-                title: 'Register Succefull',
-                showConfirmButton: false,
-                timer: 1500
-              })
-              this.reset()
-              this.$router.push({name:'login_in'})
-          }else{// si hay errores  veremos cual es
-            this.validacion(res.validation)
-            this.$store.commit('AUTH/LOADING_FALSE')
-          }
+          console.log('el error esta de aqui para abajo')
+           try {
+                const res = await this.$store.dispatch('AUTH/STORE_USER',this.data)
+                console.log('error es el impostor')
+                this.$store.commit('AUTH/LOADING_FALSE')
+                Swal.fire({
+                  position:'center',
+                  icon: 'success',
+                  title: 'Register Succefull',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+                this.reset()
+                this.$router.push({name:'login_in'})
+                console.log('error pero solo era un tripulante')
+                this.validacion(res.validation)
+                this.$store.commit('AUTH/LOADING_FALSE')
 
-        })
-        .catch(err => console.log(err))
-        this.$store.commit('AUTH/LOADING_FALSE')
+           } catch(e) {
+              console.log(e)
+              console.log(e.response)
+              this.$store.commit('AUTH/LOADING_FALSE')
+              this.reset()
+
+           }
+
+
+
+
+
 			},
 
 			reset(){
