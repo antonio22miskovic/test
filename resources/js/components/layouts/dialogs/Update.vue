@@ -60,6 +60,8 @@
     name:'Dialog_Update',
     mounted(){
       this.set_data()
+     console.log(this.dialog)
+     console.log('active el modal')
     },
     data: () => ({
       data:{

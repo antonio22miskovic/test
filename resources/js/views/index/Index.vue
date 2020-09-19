@@ -69,8 +69,8 @@ export default {
 </script>
 <style scoped lang="css">
   #login {
-    height: 700px;
-    width: 1000px;
+    height: 100%;
+    width: 100%;
     position: absolute;
     top: 0;
     left: 0;

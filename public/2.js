@@ -69,6 +69,8 @@ __webpack_require__.r(__webpack_exports__);
   name: 'Dialog_Update',
   mounted: function mounted() {
     this.set_data();
+    console.log(this.dialog);
+    console.log('active el modal');
   },
   data: function data() {
     return {
@@ -812,7 +814,7 @@ var render = function() {
                   ]
                 : _vm._e(),
               _vm._v(" "),
-              _vm.users < 1
+              _vm.users.length < 1
                 ? [
                     _c(
                       "v-container",

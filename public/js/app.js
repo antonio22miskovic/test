@@ -97715,6 +97715,14 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserModule", function() { return UserModule; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 /////////////////////////// CONTACTS //////////////
 var UserModule = {
   namespaced: true,
@@ -97746,7 +97754,7 @@ var UserModule = {
       state.paginate = payload;
     },
     SET_CONTACT: function SET_CONTACT(state, payload) {
-      state.contacts = payload;
+      state.users = payload;
     },
     DIALOG_UPDATE: function DIALOG_UPDATE(state, payload) {
       state.dialog = payload;
@@ -97758,19 +97766,57 @@ var UserModule = {
   },
   actions: {
     GET: function GET(context, page) {
-      axios.get('/api/user?page=' + page).then(function (res) {
-        if (res.data.user.data.length > 0) {
-          context.commit('SET_CONTACT', res.data.user.data);
-          context.commit('SET_PAGINATE', res.data.paginate);
-        }
-      })["catch"](function (err) {
-        console.log(err);
-      });
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios.get('/api/user?page=' + page);
+
+              case 3:
+                res = _context.sent;
+
+                if (res.data.users.data.length > 0) {
+                  context.commit('SET_CONTACT', res.data.users.data);
+                  context.commit('SET_PAGINATE', res.data.paginate);
+                }
+
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](0);
+                console.log(_context.t0);
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 7]]);
+      }))();
     },
     DELETE: function DELETE(context, id) {
-      axios["delete"]('/api/user/' + id).then(function (res) {})["catch"](function (err) {
-        console.log(err);
-      });
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                axios["delete"]('/api/user/' + id).then(function (res) {})["catch"](function (err) {
+                  console.log(err);
+                });
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   }
 };
@@ -98089,10 +98135,11 @@ var authModule = {
                 return axios.post('/api/user', datos);
 
               case 2:
-                res = _context7.sent.data;
+                res = _context7.sent;
+                console.log(res);
                 return _context7.abrupt("return", res);
 
-              case 4:
+              case 5:
               case "end":
                 return _context7.stop();
             }

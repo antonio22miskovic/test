@@ -80,7 +80,7 @@
   					</v-container>
   				</div>
 			</template>
-			<template v-if="users < 1">
+			<template v-if="users.length < 1">
 				<v-container>
 			 		<v-alert
       		  			outlined

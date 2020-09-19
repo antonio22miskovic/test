@@ -83,7 +83,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#login[data-v-3d9af2f4] {\n  height: 700px;\n  width: 1000px;\n  position: absolute;\n  top: 0;\n  left: 0;\n  content: \"\";\n  z-index: 0;\n  background-image:url(/img/login/login3.jpg);\n  display: cover;\n}\n.fade-enter[data-v-3d9af2f4] {\n    opacity: 0;\n}\n.fade-enter-active[data-v-3d9af2f4] {\n  transition: opacity 0.50s ease;\n}\n.fade-leave[data-v-3d9af2f4] {}\n.fade-leave-active[data-v-3d9af2f4] {\n  transition: opacity 0.50s ease;\n  opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n#login[data-v-3d9af2f4] {\n  height: 100%;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  content: \"\";\n  z-index: 0;\n  background-image:url(/img/login/login3.jpg);\n  display: cover;\n}\n.fade-enter[data-v-3d9af2f4] {\n    opacity: 0;\n}\n.fade-enter-active[data-v-3d9af2f4] {\n  transition: opacity 0.50s ease;\n}\n.fade-leave[data-v-3d9af2f4] {}\n.fade-leave-active[data-v-3d9af2f4] {\n  transition: opacity 0.50s ease;\n  opacity: 0;\n}\n", ""]);
 
 // exports
 

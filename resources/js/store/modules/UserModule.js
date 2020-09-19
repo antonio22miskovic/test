@@ -42,7 +42,7 @@ export const UserModule = {
 
 		SET_CONTACT(state, payload){
 
-			state.contacts = payload
+			state.users = payload
 
 		},
 
@@ -54,7 +54,7 @@ export const UserModule = {
 
 		PULL_UPDATE(state, payload){
 
-			state.pull = payload
+			state.pull   = payload
 			state.dialog = true
 
 		}
@@ -63,21 +63,20 @@ export const UserModule = {
 
 	actions:{
 
-		GET(context, page){
-			 axios.get('/api/user?page='+page).then(res=>{
-			 	if (res.data.user.data.length > 0) {
-			 		context.commit('SET_CONTACT',res.data.user.data)
+	async GET(context, page){
+		try {
+			let res = await axios.get('/api/user?page='+page)
+			if (res.data.users.data.length > 0) {
+			 		context.commit('SET_CONTACT',res.data.users.data)
 					context.commit('SET_PAGINATE',res.data.paginate)
-			 	}
+			}
 
-			}).
-			 catch(err =>{
-			 	console.log(err)
-			 })
-		},
-		DELETE(context, id){
+		} catch(e) {
+			console.log(e);
+		}
+	},
+	async DELETE(context, id){
 			 axios.delete('/api/user/'+id).then(res=>{
-
 			}).
 			 catch(err =>{
 			 	console.log(err)

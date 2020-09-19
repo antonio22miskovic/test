@@ -178,8 +178,9 @@ export const authModule = {
 
 		// registro del usuario
 		async STORE_USER(context,datos){
-			let res = (await axios.post('/api/user',datos)).data
-				return res
+			let res = await axios.post('/api/user',datos)
+			console.log(res)
+			 	return res
 
 		}
 

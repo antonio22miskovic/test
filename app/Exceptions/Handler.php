@@ -39,7 +39,7 @@ protected $dontFlash = [
      */
     public function report(Throwable $exception)
     {
-    parent::report($exception);
+        parent::report($exception);
     }
 
     /**
@@ -60,11 +60,7 @@ protected $dontFlash = [
             }
 
              if ($exception instanceof ValidationException) {
-                return response()
-                       ->json([
-                                'validation'=> $exception->validator->errors(),
-                                'status'=>400],
-                                400);
+                return response()->json($exception->validator->errors(),400);
             }
 
              if ($exception instanceof QueryException) {
